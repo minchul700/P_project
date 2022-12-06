@@ -2,6 +2,9 @@ package com.example.closet
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import closet.R
 import closet.databinding.ActivityDetailBinding
 
 class DetailActivity : AppCompatActivity() {
@@ -14,6 +17,13 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+
+        //toolbar를 main액티비티의 actionBar로 설정
+        setSupportActionBar(binding.toolbar2)
+
+        //toolbar에 뒤로가기 버튼 설정
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        
         init()
 
     }//end of onCreate
@@ -46,5 +56,27 @@ class DetailActivity : AppCompatActivity() {
     //"CLOSET"를 전역상수로 사용하기 위해 final static으로 선언
     companion object {
         const val CLOSET = "CLOSET"
+    }
+
+    //detail toolbar를 detail_menu로 설정
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.detail_menu,menu)
+        return true
+    }
+
+    //메뉴 메서드 처리
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            android.R.id.home ->{
+                //home 버튼 메서드
+                finish()
+            }
+            
+            R.id.delete_closet -> {
+                // 옷장 제거 메서드 추가
+            }
+        }
+
+        return true
     }
 }//end of DetailActivity
