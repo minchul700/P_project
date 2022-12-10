@@ -1,29 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="closet">
+package="closet">
 
-    <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="오늘의 옷장"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.ClosetRV">
-        <activity
-            android:name="com.example.closet.MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<application
+    android:allowBackup="true"
+    android:icon="@mipmap/ic_launcher"
+    android:label="오늘의 옷장"
+    android:roundIcon="@mipmap/ic_launcher_round"
+    android:supportsRtl="true"
+    android:theme="@style/Theme.ClosetRV">
+    <activity
+        android:name="com.example.closet.MainActivity"
+        android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.example.closet.DetailActivity"
-            android:label="옷장 상세 정보"
-            android:parentActivityName="com.example.closet.MainActivity"
-            android:exported="false">
-        </activity>
-    </application>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
+    <activity
+        android:name="com.example.closet.DetailActivity"
+        android:label="옷장 상세 정보"
+        android:parentActivityName="com.example.closet.MainActivity"
+        android:exported="false">
+
+    </activity>
+
+    <activity
+        android:name="com.example.closet.AdditemActivity"
+        android:exported="false">
+    </activity>
+</application>
+
 
 </manifest>

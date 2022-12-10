@@ -1,5 +1,6 @@
 package com.example.closet
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -20,7 +21,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        
         //toolbar를 main액티비티의 actionBar로 설정
         setSupportActionBar(binding.toolbar)
 
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         binding.rvCloset.layoutManager = LinearLayoutManager(this)
     }//end of onCreate
 
-    //main액티비니 메뉴를 main_menu로 설정
+    //main액티비티 메뉴를 main_menu로 설정
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu,menu)
         return true
@@ -45,7 +45,8 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.add_closet -> {
-                // 옷장 추가 메서드 추가
+                val intent = Intent(this, AdditemActivity::class.java)
+                startActivity(intent)
             }
         }
         
