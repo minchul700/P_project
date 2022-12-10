@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?><manifest xmlns:android="http://schemas.android.com/apk/res/android"
 package="closet">
 
 <application
@@ -12,11 +11,6 @@ package="closet">
     <activity
         android:name="com.example.closet.MainActivity"
         android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
     </activity>
     <activity
         android:name="com.example.closet.DetailActivity"
@@ -28,9 +22,19 @@ package="closet">
 
     <activity
         android:name="com.example.closet.AdditemActivity"
+        android:label="옷장 추가"
         android:exported="false">
+
+    </activity>
+
+    <activity
+        android:name="com.example.closet.IntroActivity"
+        android:exported="true">
+    <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+    </intent-filter>
     </activity>
 </application>
-
-
 </manifest>
+

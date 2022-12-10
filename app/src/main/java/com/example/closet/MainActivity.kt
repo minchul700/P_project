@@ -33,7 +33,22 @@ class MainActivity : AppCompatActivity() {
 
         //리사이클러뷰에 레이아웃메니저 설정
         binding.rvCloset.layoutManager = LinearLayoutManager(this)
+
+
     }//end of onCreate
+
+    //다른 화면에서 돌아왔을때 리스트 갱신을 위한 오버라이딩
+    override fun onRestart() {
+        super.onRestart()
+        binding.rvCloset.adapter = Adapter()
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.rvCloset.adapter = Adapter()
+    }
+
 
     //main액티비티 메뉴를 main_menu로 설정
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

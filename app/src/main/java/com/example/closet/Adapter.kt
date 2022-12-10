@@ -21,9 +21,10 @@ class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
         return ItemViewHolder(binding)
     }//end of onCreateViewHolder
 
+
     //뷰홀더에 데이터를 바인딩
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        //데이터 바인딩
+        //리스트에 인덱스로 접근, 해당 내용 바인딩
         holder.bindData(ClosetList[position])
 
     }//end of onBindViewHolder
@@ -47,7 +48,7 @@ class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
 
                     /* 클릭한 itemView에 맞는 Data의 상수명을 인텐트에 저장
                        - Data.name : enum class에 선언된 상수이름을 반환  */
-                    mIntent.putExtra(CLOSET, 0)
+                    mIntent.putExtra(CLOSET, adapterPosition)
                     itemView.context.startActivity(mIntent)
             }
 

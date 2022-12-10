@@ -8,10 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import closet.R
 import closet.databinding.ActivityDetailBinding
-import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken
-import org.eclipse.paho.client.mqttv3.MqttCallback
-import org.eclipse.paho.client.mqttv3.MqttClient
-import org.eclipse.paho.client.mqttv3.MqttMessage
+
 
 class DetailActivity : AppCompatActivity() {
 
@@ -39,7 +36,7 @@ class DetailActivity : AppCompatActivity() {
     fun init() {
         with(binding) {
             //인텐트에서 "CLOSET"라는 이름으로 전달된 옷장의 enum 상수명을 문자열로 추출
-            var closetNo = intent.getIntExtra(CLOSET, 0)
+            var closetNo = intent.getIntExtra(CLOSET, -1)
 
             //추출한 상수명(CLOSET1,..n)으로 Data(enum class)에서 해당 옷장의 상수(객체)를 가져옴
             val Data = ClosetList[closetNo]
@@ -73,21 +70,12 @@ class DetailActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             android.R.id.home ->{
-                //home 버튼 메서드
                 finish()
             }
-            
+
             R.id.delete_closet -> {
-                /*
-                val tmp = intent.getStringExtra(CLOSET)
-                val mIntent = Intent(tmp, DetailActivity::class.java)
-
-                Log.i("CLOSET", "Data:" + ClosetData.closetName)
-
-                /* 클릭한 itemView에 맞는 Data의 상수명을 인텐트에 저장
-                  - Data.name : enum class에 선언된 상수이름을 반환  */
-                mIntent.putExtra(CLOSET, ClosetData.name)
-                itemView.context.startActivity(mIntent)*/
+                delete_closet(intent.getIntExtra(CLOSET, -1))
+                finish()
             }
         }
 
