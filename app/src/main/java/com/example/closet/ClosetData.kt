@@ -1,15 +1,15 @@
 package com.example.closet
 
-import android.text.Editable
-import closet.R
-var numOfCloset = 2; //옷장 개수 관리를 위한 변수
-var ClosetList: MutableList<ClosetData.Closet_Data> = mutableListOf(ClosetData.Closet_Data(R.drawable.img, "옷장1", "00001", 25.3, 45.2, 1000)
-,ClosetData.Closet_Data(R.drawable.img, "옷장2", "00001", 25.3, 45.2, 1000)) // 옷장 리스트
+import android.content.Context
+import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
+
+var numOfCloset = 0; //옷장 개수 관리를 위한 변수
+
+var ClosetList: MutableList<ClosetData.Closet_Data> = mutableListOf() // 옷장 리스트
 
 sealed class ClosetData{
     data class Closet_Data(var imgRes: Int?, var closetName: String?, var Serial: String?, var temp: Double?, var humid: Double?, var weight: Int?) : ClosetData()
-
-
 }
 //아이템 추가 메서드
 fun add_closet(_imgRes:Int?, _closetName: String, _Serial:String){
@@ -25,10 +25,15 @@ fun delete_closet(index: Int){
 }
 
 //상태 변경 (온습도, 무게 ) 메서드
-fun state_update(index: Int,_temp: Double, _humid: Double, _weight:Int) {
-    ClosetList[index].temp = _temp
-    ClosetList[index].humid = _humid
-    ClosetList[index].weight = _weight
+fun state_update(_Serial: String,_temp: Double, _humid: Double, _weight:Int) {
+    for (i in 1 until numOfCloset) {
+        if(ClosetList[i].Serial == _Serial) {
+            ClosetList[i].temp = _temp
+            ClosetList[i].humid = _humid
+            ClosetList[i].weight = _weight
+            break;
+        }
+    }
 }
 
 

@@ -1,9 +1,8 @@
 package com.example.closet
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+
 import android.os.Bundle
-import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import closet.R
@@ -12,9 +11,6 @@ import closet.databinding.ActivityDetailBinding
 
 class DetailActivity : AppCompatActivity() {
 
-    val ServerIP:String = "tcp://192.168.0.254:1883"  // 서버 IP
-    val TOPIC:String = "TopicName" // 토픽명
-
     private val binding by lazy {
         ActivityDetailBinding.inflate(layoutInflater)
     }
@@ -22,7 +18,11 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
+        
+        //로딩창 종료
+        customProgressDialog?.cancel()
+        
+        
         //toolbar를 main액티비티의 actionBar로 설정
         setSupportActionBar(binding.toolbar2)
 

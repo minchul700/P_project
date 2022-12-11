@@ -1,12 +1,15 @@
 package com.example.closet
 
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import closet.databinding.ListItemBinding
 import com.example.closet.DetailActivity.Companion.CLOSET
+import org.eclipse.paho.client.mqttv3.MqttMessage
 
 
 //Adapter 클래스 선언
@@ -46,10 +49,21 @@ class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
 
                     Log.i("CLOSET", "Data:" + ClosetData.closetName)
 
+                    mqttClient!!.publish(TOPIC, MqttMessage((ClosetData.Serial)?.toByteArray())) //4번 메세지 전송
+
                     /* 클릭한 itemView에 맞는 Data의 상수명을 인텐트에 저장
                        - Data.name : enum class에 선언된 상수이름을 반환  */
                     mIntent.putExtra(CLOSET, adapterPosition)
-                    itemView.context.startActivity(mIntent)
+                    
+                    //로딩창 띄우기
+
+                    customProgressDialog?.window?.setBackgroundDrawable(ColorDrawable(android.graphics.Color.TRANSPARENT));
+                    customProgressDialog?.show()
+                    val handler = Handler()
+                    handler.postDelayed({
+                        itemView.context.startActivity(mIntent)
+                    }, 3000) //3초 뒤에 세부 화면으로 이동
+
             }
 
         }
